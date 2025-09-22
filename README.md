@@ -2,7 +2,7 @@
 
 **Professional Minecraft security toolkit** - A modern web application for server administrators.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://netherguard.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://netherguard.es)
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ---
