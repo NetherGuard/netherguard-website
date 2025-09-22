@@ -1,0 +1,45 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "NetherGuard - Professional Minecraft security toolkit for server administrators" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="bg-zinc-950 text-white">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="canonical" href="https://netherguard.es" />
+    <title>{title}</title>
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-zinc-950 text-white font-space">
+    <header class="fixed top-0 w-full z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800">
+      <nav class="max-w-6xl mx-auto px-6 h-24 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-4 hover:opacity-80 transition-opacity">
+          <img src="/logo.svg" alt="NetherGuard" class="w-16 h-16" />
+        </a>
+        
+        <div class="hidden md:flex items-center gap-8">
+          <a href="/whitelist" class="text-zinc-400 hover:text-white transition-colors text-lg">Whitelist</a>
+          <a href="/commands" class="text-zinc-400 hover:text-white transition-colors text-lg">Commands</a>
+          <a href="/configs" class="text-zinc-400 hover:text-white transition-colors text-lg">Configs</a>
+          <a href="/docs" class="text-zinc-400 hover:text-white transition-colors text-lg">Docs</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="pt-24">
+      <slot />
+    </main>
+  </body>
+</html>

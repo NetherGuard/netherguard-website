@@ -1,0 +1,27 @@
+{
+  "name": "netherguard",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.3.1",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "astro": "^5.13.9",
+    "clsx": "^2.1.1",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@ameinhardt/unocss-preset-daisy": "^1.1.8",
+    "@iconify-json/lucide": "^1.2.68",
+    "@unocss/astro": "^66.5.1",
+    "daisyui": "^5.1.13",
+    "unocss": "^66.5.1"
+  }
+}

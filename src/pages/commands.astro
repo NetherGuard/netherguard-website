@@ -1,0 +1,947 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Command Builder - NetherGuard">
+  <!-- Hero Section -->
+  <section class="section-spacing bg-gradient-to-br from-obsidian-900 via-zinc-900/20 to-obsidian-900">
+    <div class="container">
+      <div class="max-w-4xl mx-auto text-center mb-12">
+        <div class="text-sm text-zinc-500 font-mono mb-4">~/command-builder</div>
+        <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+          Command <span class="text-white">Builder</span>
+        </h1>
+        <p class="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+          Generate complex administrative commands for popular Minecraft plugins with 
+          syntax validation and pre-built templates.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Builder Section -->
+  <section class="section-spacing bg-obsidian-800">
+    <div class="container">
+      <div class="max-w-4xl mx-auto space-y-12">
+        
+        <!-- Plugin Selection -->
+        <div>
+          <h2 class="text-2xl font-bold text-white mb-6">Choose Plugin</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+            
+            <button class="plugin-card active" data-plugin="essentials">
+              <div class="w-12 h-12 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                <span class="text-white font-mono text-lg font-bold">01</span>
+              </div>
+              <h3 class="font-bold text-white mb-1">Essentials</h3>
+              <p class="text-xs text-zinc-400">Basic server commands</p>
+            </button>
+
+            <button class="plugin-card" data-plugin="luckperms">
+              <div class="w-12 h-12 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                <span class="text-white font-mono text-lg font-bold">02</span>
+              </div>
+              <h3 class="font-bold text-white mb-1">LuckPerms</h3>
+              <p class="text-xs text-zinc-400">Permission system</p>
+            </button>
+
+            <button class="plugin-card" data-plugin="worldguard">
+              <div class="w-12 h-12 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                <span class="text-white font-mono text-lg font-bold">03</span>
+              </div>
+              <h3 class="font-bold text-white mb-1">WorldGuard</h3>
+              <p class="text-xs text-zinc-400">Region protection</p>
+            </button>
+
+            <button class="plugin-card" data-plugin="worldedit">
+              <div class="w-12 h-12 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                <span class="text-white font-mono text-lg font-bold">04</span>
+              </div>
+              <h3 class="font-bold text-white mb-1">WorldEdit</h3>
+              <p class="text-xs text-zinc-400">World editing</p>
+            </button>
+
+            <button class="plugin-card" data-plugin="vault">
+              <div class="w-12 h-12 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                <span class="text-white font-mono text-lg font-bold">05</span>
+              </div>
+              <h3 class="font-bold text-white mb-1">Vault</h3>
+              <p class="text-xs text-zinc-400">Economy system</p>
+            </button>
+
+          </div>
+        </div>
+        
+        <!-- Templates -->
+        <div class="bg-obsidian-700/50 border border-zinc-800 rounded-xl p-6">
+          <h3 class="text-xl font-bold text-white mb-4">Quick Templates</h3>
+          <p class="text-sm text-zinc-400 mb-4">Click a template to configure parameters</p>
+          <div id="templatesList" class="space-y-2">
+            <!-- Templates will be populated by JS -->
+          </div>
+        </div>
+
+        <!-- Manual Command Builder -->
+        <div class="bg-obsidian-700/50 border border-zinc-800 rounded-xl p-6">
+          <h3 class="text-xl font-bold text-white mb-4">Manual Builder</h3>
+          
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-zinc-300 mb-2">Command</label>
+              <input 
+                type="text" 
+                id="commandInput" 
+                placeholder="e.g., give {player} {item} {amount}"
+                class="w-full px-4 py-3 bg-obsidian-900 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:border-white focus:outline-none transition-colors font-mono text-sm"
+              />
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-zinc-300 mb-2">Player</label>
+                <input 
+                  type="text" 
+                  id="playerInput" 
+                  placeholder="username"
+                  class="w-full px-3 py-2 bg-obsidian-900 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:border-white focus:outline-none transition-colors text-sm"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-zinc-300 mb-2">Value</label>
+                <input 
+                  type="text" 
+                  id="valueInput" 
+                  placeholder="parameter value"
+                  class="w-full px-3 py-2 bg-obsidian-900 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:border-white focus:outline-none transition-colors text-sm"
+                />
+              </div>
+            </div>
+
+            <button 
+              id="addCommandBtn"
+              class="w-full px-6 py-3 bg-white hover:bg-zinc-200 text-black rounded-lg font-semibold transition-all duration-200 hover:scale-105"
+            >
+              Add Command
+            </button>
+          </div>
+        </div>
+
+        <!-- Batch Operations -->
+        <div class="bg-obsidian-700/50 border border-zinc-800 rounded-xl p-6">
+          <h3 class="text-xl font-bold text-white mb-4">Batch Operations</h3>
+          
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-zinc-300 mb-2">Import Players</label>
+              <div 
+                id="playersDropZone"
+                class="border-2 border-dashed border-zinc-600 rounded-lg p-4 text-center cursor-pointer hover:border-white transition-colors"
+              >
+                <div class="text-zinc-400 text-sm">
+                  Drop a .txt file with player names or click to browse
+                </div>
+                <input type="file" id="playersFileInput" accept=".txt" class="hidden" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-zinc-300 mb-2">Template</label>
+                <select 
+                  id="batchTemplate"
+                  class="w-full px-3 py-2 bg-obsidian-900 border border-zinc-700 rounded-lg text-white focus:border-white focus:outline-none transition-colors text-sm"
+                >
+                  <option value="">Select template</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-zinc-300 mb-2">Parameter</label>
+                <input 
+                  type="text" 
+                  id="batchParameter"
+                  placeholder="shared parameter"
+                  class="w-full px-3 py-2 bg-obsidian-900 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:border-white focus:outline-none transition-colors text-sm"
+                />
+              </div>
+            </div>
+
+            <button 
+              id="batchGenerateBtn"
+              class="w-full px-6 py-3 bg-white/10 border border-white/20 hover:bg-white/20 text-white rounded-lg font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled
+            >
+              Generate Batch Commands
+            </button>
+          </div>
+        </div>
+
+        <!-- Generated Commands -->
+        <div class="bg-obsidian-700/50 border border-zinc-800 rounded-xl p-6">
+          <div class="flex justify-between items-center mb-6">
+            <h3 class="text-xl font-bold text-white">Generated Commands</h3>
+            <div class="flex gap-2">
+              <button 
+                id="copyAllBtn"
+                class="px-4 py-2 bg-white/10 border border-white/20 hover:bg-white/20 text-white rounded-lg text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled
+                title="Copy all commands"
+              >
+                Copy All
+              </button>
+              <button 
+                id="clearCommandsBtn"
+                class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg text-sm font-medium transition-colors"
+              >
+                Clear All
+              </button>
+            </div>
+          </div>
+
+          <div id="commandsList" class="space-y-2 min-h-[200px] max-h-[400px] overflow-y-auto mb-6">
+            <div class="text-zinc-500 text-center py-8">
+              No commands generated yet. Use templates or manual builder above.
+            </div>
+          </div>
+
+          <!-- Export Options -->
+          <div class="pt-6 border-t border-zinc-800 space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <button 
+                id="exportTxtBtn"
+                class="px-4 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white font-medium transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 text-sm"
+                disabled
+              >
+                <div class="mb-1">TXT</div>
+                <div class="text-xs text-zinc-400">Plain text</div>
+              </button>
+
+              <button 
+                id="exportBatchBtn"
+                class="px-4 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white font-medium transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 text-sm"
+                disabled
+              >
+                <div class="mb-1">BAT</div>
+                <div class="text-xs text-zinc-400">Batch file</div>
+              </button>
+
+              <button 
+                id="exportYamlBtn"
+                class="px-4 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white font-medium transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 text-sm"
+                disabled
+              >
+                <div class="mb-1">YAML</div>
+                <div class="text-xs text-zinc-400">Config format</div>
+              </button>
+            </div>
+
+            <div id="exportStatus" class="text-sm text-zinc-400 text-center">
+              Add commands to enable export options
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast Notifications -->
+  <div id="toastContainer" class="fixed top-4 right-4 z-50 space-y-2"></div>
+
+  <!-- How it Works -->
+  <section class="section-spacing bg-obsidian-900">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-white text-center mb-12">Professional Features</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <div class="i-lucide-puzzle text-2xl text-white"></div>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Smart Templates</h3>
+            <p class="text-zinc-400">Dynamic parameter forms with intelligent validation and examples.</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <div class="i-lucide-users text-2xl text-white"></div>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Batch Operations</h3>
+            <p class="text-zinc-400">Apply commands to multiple players at once with bulk import.</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <div class="i-lucide-copy text-2xl text-white"></div>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Copy & Export</h3>
+            <p class="text-zinc-400">One-click copy or export in multiple formats including batch files.</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <div class="i-lucide-shield-check text-2xl text-white"></div>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Validation</h3>
+            <p class="text-zinc-400">Command syntax validation with warnings for dangerous operations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  interface CommandTemplate {
+    name: string;
+    description: string;
+    command: string;
+    category: string;
+  }
+
+  interface Plugin {
+    name: string;
+    color: string;
+    templates: CommandTemplate[];
+  }
+
+  class CommandBuilder {
+    private currentPlugin: string = 'essentials';
+    private commands: string[] = [];
+    private importedPlayers: string[] = [];
+    private plugins: Record<string, Plugin> = {
+      essentials: {
+        name: 'Essentials',
+        color: 'white',
+        templates: [
+          { name: 'Give Items', description: 'Give items to player', command: 'give {player} {item} {amount}', category: 'items' },
+          { name: 'Teleport Player', description: 'Teleport player to coordinates', command: 'tp {player} {x} {y} {z}', category: 'teleport' },
+          { name: 'Set Home', description: 'Set player home location', command: 'sethome {player} {home_name}', category: 'homes' },
+          { name: 'Heal Player', description: 'Heal a player', command: 'heal {player}', category: 'admin' },
+          { name: 'God Mode', description: 'Toggle god mode', command: 'god {player}', category: 'admin' },
+          { name: 'Set Gamemode', description: 'Change player gamemode', command: 'gamemode {mode} {player}', category: 'admin' }
+        ]
+      },
+      luckperms: {
+        name: 'LuckPerms',
+        color: 'white',
+        templates: [
+          { name: 'Add Permission', description: 'Add permission to user', command: 'lp user {player} permission set {permission} true', category: 'permissions' },
+          { name: 'Remove Permission', description: 'Remove permission from user', command: 'lp user {player} permission unset {permission}', category: 'permissions' },
+          { name: 'Add to Group', description: 'Add user to group', command: 'lp user {player} parent add {group}', category: 'groups' },
+          { name: 'Remove from Group', description: 'Remove user from group', command: 'lp user {player} parent remove {group}', category: 'groups' },
+          { name: 'Create Group', description: 'Create new group', command: 'lp creategroup {group}', category: 'groups' },
+          { name: 'Set Prefix', description: 'Set user prefix', command: 'lp user {player} meta addprefix {priority} "{prefix}"', category: 'meta' }
+        ]
+      },
+      worldguard: {
+        name: 'WorldGuard',
+        color: 'white',
+        templates: [
+          { name: 'Create Region', description: 'Create protected region', command: 'rg define {region_name}', category: 'regions' },
+          { name: 'Add Owner', description: 'Add region owner', command: 'rg addowner {region_name} {player}', category: 'regions' },
+          { name: 'Add Member', description: 'Add region member', command: 'rg addmember {region_name} {player}', category: 'regions' },
+          { name: 'Set Flag', description: 'Set region flag', command: 'rg flag {region_name} {flag} {value}', category: 'flags' },
+          { name: 'Block PvP', description: 'Disable PvP in region', command: 'rg flag {region_name} pvp deny', category: 'flags' },
+          { name: 'Allow Build', description: 'Allow building in region', command: 'rg flag {region_name} build allow', category: 'flags' }
+        ]
+      },
+      worldedit: {
+        name: 'WorldEdit',
+        color: 'white',
+        templates: [
+          { name: 'Set Blocks', description: 'Set blocks in selection', command: '//set {block_type}', category: 'basic' },
+          { name: 'Replace Blocks', description: 'Replace blocks in selection', command: '//replace {from_block} {to_block}', category: 'basic' },
+          { name: 'Create Sphere', description: 'Create sphere', command: '//sphere {block_type} {radius}', category: 'generation' },
+          { name: 'Create Cylinder', description: 'Create cylinder', command: '//cylinder {block_type} {radius} {height}', category: 'generation' },
+          { name: 'Undo Changes', description: 'Undo last changes', command: '//undo {steps}', category: 'history' },
+          { name: 'Copy Selection', description: 'Copy selected area', command: '//copy', category: 'clipboard' }
+        ]
+      },
+      vault: {
+        name: 'Vault',
+        color: 'white',
+        templates: [
+          { name: 'Give Money', description: 'Give money to player', command: 'eco give {player} {amount}', category: 'economy' },
+          { name: 'Take Money', description: 'Take money from player', command: 'eco take {player} {amount}', category: 'economy' },
+          { name: 'Set Balance', description: 'Set player balance', command: 'eco set {player} {amount}', category: 'economy' },
+          { name: 'Check Balance', description: 'Check player balance', command: 'money {player}', category: 'economy' },
+          { name: 'Pay Player', description: 'Transfer money between players', command: 'pay {target_player} {amount}', category: 'economy' },
+          { name: 'Reset Economy', description: 'Reset player economy', command: 'eco reset {player}', category: 'economy' }
+        ]
+      }
+    };
+
+    private templatesList!: HTMLElement;
+    private commandsList!: HTMLElement;
+    private commandInput!: HTMLInputElement;
+    private playerInput!: HTMLInputElement;
+    private valueInput!: HTMLInputElement;
+    private addCommandBtn!: HTMLButtonElement;
+    private clearCommandsBtn!: HTMLButtonElement;
+    private copyAllBtn!: HTMLButtonElement;
+    private exportTxtBtn!: HTMLButtonElement;
+    private exportBatchBtn!: HTMLButtonElement;
+    private exportYamlBtn!: HTMLButtonElement;
+    private playersDropZone!: HTMLElement;
+    private playersFileInput!: HTMLInputElement;
+    private batchTemplate!: HTMLSelectElement;
+    private batchParameter!: HTMLInputElement;
+    private batchGenerateBtn!: HTMLButtonElement;
+    private exportStatus!: HTMLElement;
+
+    constructor() {
+      this.init();
+    }
+
+    private init(): void {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => this.initElements());
+      } else {
+        this.initElements();
+      }
+    }
+
+    private initElements(): void {
+      // Get elements
+      this.templatesList = document.getElementById('templatesList') as HTMLElement;
+      this.commandsList = document.getElementById('commandsList') as HTMLElement;
+      this.commandInput = document.getElementById('commandInput') as HTMLInputElement;
+      this.playerInput = document.getElementById('playerInput') as HTMLInputElement;
+      this.valueInput = document.getElementById('valueInput') as HTMLInputElement;
+      this.addCommandBtn = document.getElementById('addCommandBtn') as HTMLButtonElement;
+      this.clearCommandsBtn = document.getElementById('clearCommandsBtn') as HTMLButtonElement;
+      this.copyAllBtn = document.getElementById('copyAllBtn') as HTMLButtonElement;
+      this.exportTxtBtn = document.getElementById('exportTxtBtn') as HTMLButtonElement;
+      this.exportBatchBtn = document.getElementById('exportBatchBtn') as HTMLButtonElement;
+      this.exportYamlBtn = document.getElementById('exportYamlBtn') as HTMLButtonElement;
+      this.playersDropZone = document.getElementById('playersDropZone') as HTMLElement;
+      this.playersFileInput = document.getElementById('playersFileInput') as HTMLInputElement;
+      this.batchTemplate = document.getElementById('batchTemplate') as HTMLSelectElement;
+      this.batchParameter = document.getElementById('batchParameter') as HTMLInputElement;
+      this.batchGenerateBtn = document.getElementById('batchGenerateBtn') as HTMLButtonElement;
+      this.exportStatus = document.getElementById('exportStatus') as HTMLElement;
+
+      // Plugin selection
+      document.querySelectorAll('.plugin-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const plugin = (card as HTMLElement).dataset.plugin!;
+          this.selectPlugin(plugin);
+        });
+      });
+
+      // Manual builder
+      this.addCommandBtn?.addEventListener('click', () => this.addManualCommand());
+      this.commandInput?.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') this.addManualCommand();
+      });
+
+      // Buttons
+      this.clearCommandsBtn?.addEventListener('click', () => this.clearCommands());
+      this.copyAllBtn?.addEventListener('click', () => this.copyAllCommands());
+      
+      // Export buttons
+      this.exportTxtBtn?.addEventListener('click', () => this.exportTXT());
+      this.exportBatchBtn?.addEventListener('click', () => this.exportBatch());
+      this.exportYamlBtn?.addEventListener('click', () => this.exportYAML());
+
+      // Batch operations
+      this.playersDropZone?.addEventListener('click', () => this.playersFileInput?.click());
+      this.playersDropZone?.addEventListener('dragover', this.handleDragOver.bind(this));
+      this.playersDropZone?.addEventListener('drop', this.handleDrop.bind(this));
+      this.playersFileInput?.addEventListener('change', this.handleFileSelect.bind(this));
+      this.batchGenerateBtn?.addEventListener('click', () => this.generateBatchCommands());
+
+      // Initialize
+      this.loadTemplates();
+      this.loadBatchTemplates();
+      this.renderCommands();
+    }
+
+    private selectPlugin(plugin: string): void {
+      this.currentPlugin = plugin;
+      
+      // Update UI
+      document.querySelectorAll('.plugin-card').forEach(card => {
+        card.classList.remove('active');
+      });
+      document.querySelector(`[data-plugin="${plugin}"]`)?.classList.add('active');
+
+      this.loadTemplates();
+      this.loadBatchTemplates();
+    }
+
+    private loadTemplates(): void {
+      if (!this.templatesList) return;
+
+      const plugin = this.plugins[this.currentPlugin];
+      if (!plugin) return;
+
+      this.templatesList.innerHTML = plugin.templates.map(template => `
+        <button class="template-btn w-full text-left p-3 bg-obsidian-800/50 hover:bg-obsidian-700/50 rounded-lg border border-zinc-800 hover:border-zinc-700 transition-colors" data-command="${template.command}">
+          <div class="font-medium text-white text-sm mb-1">${template.name}</div>
+          <div class="text-xs text-zinc-400 mb-2">${template.description}</div>
+          <div class="font-mono text-xs text-zinc-300 bg-obsidian-900/50 px-2 py-1 rounded">${template.command}</div>
+        </button>
+      `).join('');
+
+      // Add event listeners to template buttons
+      this.templatesList.querySelectorAll('.template-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const command = (btn as HTMLElement).dataset.command!;
+          this.addTemplateCommand(command);
+        });
+      });
+    }
+
+    private loadBatchTemplates(): void {
+      if (!this.batchTemplate) return;
+
+      const plugin = this.plugins[this.currentPlugin];
+      if (!plugin) return;
+
+      this.batchTemplate.innerHTML = '<option value="">Select template</option>' + 
+        plugin.templates.map(template => 
+          `<option value="${template.command}">${template.name}</option>`
+        ).join('');
+
+      this.updateBatchButton();
+    }
+
+    private addTemplateCommand(template: string): void {
+      const placeholders = this.extractPlaceholders(template);
+      
+      if (placeholders.length > 0) {
+        this.showTemplateModal(template, placeholders);
+      } else {
+        this.addCommand(template);
+      }
+    }
+
+    private extractPlaceholders(template: string): string[] {
+      const matches = template.match(/{([^}]+)}/g);
+      return matches ? [...new Set(matches.map(m => m.slice(1, -1)))] : [];
+    }
+
+    private showTemplateModal(template: string, placeholders: string[]): void {
+      const modal = document.createElement('div');
+      modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm';
+      
+      modal.innerHTML = `
+        <div class="bg-obsidian-800 rounded-xl p-6 max-w-md w-full mx-4 border border-zinc-700 shadow-2xl">
+          <h3 class="text-xl font-bold text-white mb-2">Configure Command</h3>
+          <div class="text-sm text-zinc-400 mb-4 font-mono bg-obsidian-900/50 px-3 py-2 rounded">${template}</div>
+          
+          <form id="templateForm" class="space-y-4">
+            ${placeholders.map(placeholder => `
+              <div>
+                <label class="block text-sm font-medium text-zinc-300 mb-2">${this.formatPlaceholder(placeholder)}</label>
+                <input 
+                  type="text" 
+                  name="${placeholder}"
+                  placeholder="${this.getPlaceholderExample(placeholder)}"
+                  class="w-full px-3 py-2 bg-obsidian-900 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:border-white focus:outline-none transition-colors text-sm"
+                  required
+                />
+              </div>
+            `).join('')}
+            
+            <div class="flex gap-3 pt-4 border-t border-zinc-700">
+              <button type="submit" class="flex-1 px-4 py-2 bg-white hover:bg-zinc-200 text-black rounded-lg font-semibold transition-colors">
+                Add Command
+              </button>
+              <button type="button" id="cancelModal" class="px-4 py-2 bg-zinc-700 hover:bg-zinc-600 text-white rounded-lg font-medium transition-colors">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      
+      const firstInput = modal.querySelector('input') as HTMLInputElement;
+      firstInput?.focus();
+      
+      modal.querySelector('#templateForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target as HTMLFormElement);
+        let finalCommand = template;
+        
+        placeholders.forEach(placeholder => {
+          const value = formData.get(placeholder) as string;
+          if (value.trim()) {
+            finalCommand = finalCommand.replace(new RegExp(`{${placeholder}}`, 'g'), value.trim());
+          }
+        });
+        
+        this.addCommand(finalCommand);
+        document.body.removeChild(modal);
+      });
+      
+      modal.querySelector('#cancelModal')?.addEventListener('click', () => {
+        document.body.removeChild(modal);
+      });
+      
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          document.body.removeChild(modal);
+        }
+      });
+      
+      const handleKeydown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          document.body.removeChild(modal);
+          document.removeEventListener('keydown', handleKeydown);
+        }
+      };
+      document.addEventListener('keydown', handleKeydown);
+    }
+
+    private formatPlaceholder(placeholder: string): string {
+      return placeholder.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }
+
+    private getPlaceholderExample(placeholder: string): string {
+      const examples: Record<string, string> = {
+        'player': 'PlayerName',
+        'target_player': 'TargetPlayer',
+        'item': 'diamond_sword',
+        'amount': '64',
+        'x': '100',
+        'y': '64',
+        'z': '200',
+        'permission': 'essentials.heal',
+        'group': 'vip',
+        'region_name': 'spawn',
+        'home_name': 'base',
+        'flag': 'pvp',
+        'value': 'allow',
+        'block_type': 'stone',
+        'from_block': 'dirt',
+        'to_block': 'grass',
+        'radius': '10',
+        'height': '5',
+        'steps': '1',
+        'mode': 'creative',
+        'priority': '100',
+        'prefix': '[VIP]'
+      };
+      
+      return examples[placeholder] || `Enter ${placeholder}`;
+    }
+
+    private addManualCommand(): void {
+      let command = this.commandInput?.value.trim();
+      if (!command) return;
+
+      const player = this.playerInput?.value.trim();
+      const value = this.valueInput?.value.trim();
+
+      if (player) {
+        command = command.replace(/{player}/g, player);
+      }
+      if (value) {
+        command = command.replace(/{item}/g, value)
+                        .replace(/{amount}/g, value)
+                        .replace(/{permission}/g, value)
+                        .replace(/{group}/g, value)
+                        .replace(/{region_name}/g, value)
+                        .replace(/{flag}/g, value)
+                        .replace(/{value}/g, value)
+                        .replace(/{block_type}/g, value);
+      }
+
+      this.addCommand(command);
+      
+      if (this.commandInput) this.commandInput.value = '';
+      if (this.playerInput) this.playerInput.value = '';
+      if (this.valueInput) this.valueInput.value = '';
+    }
+
+    // Batch operations
+    private handleDragOver(e: DragEvent): void {
+      e.preventDefault();
+      if (this.playersDropZone) {
+        this.playersDropZone.classList.add('border-white');
+      }
+    }
+
+    private handleDrop(e: DragEvent): void {
+      e.preventDefault();
+      if (this.playersDropZone) {
+        this.playersDropZone.classList.remove('border-white');
+      }
+      const files = e.dataTransfer?.files;
+      if (files && files.length > 0) {
+        this.processPlayersFile(files[0]);
+      }
+    }
+
+    private handleFileSelect(e: Event): void {
+      const input = e.target as HTMLInputElement;
+      if (input.files && input.files.length > 0) {
+        this.processPlayersFile(input.files[0]);
+      }
+    }
+
+    private async processPlayersFile(file: File): Promise<void> {
+      if (!file.name.endsWith('.txt')) {
+        this.showToast('Please select a .txt file', 'error');
+        return;
+      }
+
+      const text = await file.text();
+      this.importedPlayers = text.split('\n')
+        .map(line => line.trim())
+        .filter(line => line && !line.startsWith('#'));
+
+      this.showToast(`Imported ${this.importedPlayers.length} players`, 'success');
+      this.updateBatchButton();
+    }
+
+    private updateBatchButton(): void {
+      if (this.batchGenerateBtn) {
+        const hasPlayers = this.importedPlayers.length > 0;
+        const hasTemplate = this.batchTemplate?.value;
+        this.batchGenerateBtn.disabled = !(hasPlayers && hasTemplate);
+      }
+    }
+
+    private generateBatchCommands(): void {
+      const template = this.batchTemplate?.value;
+      const parameter = this.batchParameter?.value.trim();
+      
+      if (!template || this.importedPlayers.length === 0) return;
+
+      let generatedCount = 0;
+      this.importedPlayers.forEach(player => {
+        let command = template;
+        command = command.replace(/{player}/g, player);
+        
+        if (parameter) {
+          command = command.replace(/{item}/g, parameter)
+                          .replace(/{amount}/g, parameter)
+                          .replace(/{permission}/g, parameter)
+                          .replace(/{group}/g, parameter)
+                          .replace(/{region_name}/g, parameter)
+                          .replace(/{flag}/g, parameter)
+                          .replace(/{value}/g, parameter)
+                          .replace(/{block_type}/g, parameter);
+        }
+        
+        this.addCommand(command);
+        generatedCount++;
+      });
+
+      this.showToast(`Generated ${generatedCount} batch commands`, 'success');
+    }
+
+    private addCommand(command: string): void {
+      this.commands.push(command);
+      this.renderCommands();
+      this.updateExportButtons();
+    }
+
+    private renderCommands(): void {
+      if (!this.commandsList) return;
+
+      if (this.commands.length === 0) {
+        this.commandsList.innerHTML = `
+          <div class="text-zinc-500 text-center py-8">
+            No commands generated yet. Use templates or manual builder above.
+          </div>
+        `;
+        return;
+      }
+
+      this.commandsList.innerHTML = this.commands.map((command, index) => `
+        <div class="flex items-center justify-between p-3 bg-obsidian-800/50 rounded-lg group">
+          <code class="text-white font-mono text-sm flex-1 mr-3">${command}</code>
+          <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            <button onclick="window.commandBuilder?.copyCommand(${index})" class="text-zinc-400 hover:text-white transition-colors" title="Copy command">
+              <div class="i-lucide-copy text-sm"></div>
+            </button>
+            <button onclick="window.commandBuilder?.removeCommand(${index})" class="text-zinc-400 hover:text-white transition-colors" title="Remove command">
+              <div class="i-lucide-x text-sm"></div>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    public copyCommand(index: number): void {
+      const command = this.commands[index];
+      navigator.clipboard.writeText(command).then(() => {
+        this.showToast('Command copied to clipboard', 'success');
+      });
+    }
+
+    public removeCommand(index: number): void {
+      this.commands.splice(index, 1);
+      this.renderCommands();
+      this.updateExportButtons();
+    }
+
+    private clearCommands(): void {
+      this.commands = [];
+      this.renderCommands();
+      this.updateExportButtons();
+    }
+
+    private copyAllCommands(): void {
+      if (this.commands.length === 0) return;
+      
+      const allCommands = this.commands.join('\n');
+      navigator.clipboard.writeText(allCommands).then(() => {
+        this.showToast(`Copied ${this.commands.length} commands to clipboard`, 'success');
+      });
+    }
+
+    private updateExportButtons(): void {
+      const hasCommands = this.commands.length > 0;
+      
+      if (this.copyAllBtn) this.copyAllBtn.disabled = !hasCommands;
+      if (this.exportTxtBtn) this.exportTxtBtn.disabled = !hasCommands;
+      if (this.exportBatchBtn) this.exportBatchBtn.disabled = !hasCommands;
+      if (this.exportYamlBtn) this.exportYamlBtn.disabled = !hasCommands;
+
+      if (this.exportStatus) {
+        if (hasCommands) {
+          this.exportStatus.textContent = `Ready to export ${this.commands.length} commands`;
+        } else {
+          this.exportStatus.textContent = 'Add commands to enable export options';
+        }
+      }
+    }
+
+    private exportTXT(): void {
+      const content = [
+        '# Minecraft Commands',
+        `# Generated by NetherGuard - ${new Date().toISOString().split('T')[0]}`,
+        `# Plugin: ${this.plugins[this.currentPlugin].name}`,
+        `# Total Commands: ${this.commands.length}`,
+        '',
+        ...this.commands
+      ].join('\n');
+
+      this.downloadFile(content, `${this.currentPlugin}-commands.txt`, 'text/plain');
+    }
+
+    private exportBatch(): void {
+      const content = [
+        '@echo off',
+        `REM Minecraft Commands - ${this.plugins[this.currentPlugin].name}`,
+        `REM Generated by NetherGuard - ${new Date().toISOString().split('T')[0]}`,
+        `REM Total Commands: ${this.commands.length}`,
+        '',
+        ...this.commands.map(cmd => `echo Executing: ${cmd}`),
+        ...this.commands.map(cmd => `${cmd}`),
+        '',
+        'echo All commands executed!',
+        'pause'
+      ].join('\n');
+
+      this.downloadFile(content, `${this.currentPlugin}-commands.bat`, 'application/x-msdos-program');
+    }
+
+    private exportYAML(): void {
+      const content = [
+        '# Minecraft Commands Configuration',
+        `# Generated by NetherGuard - ${new Date().toISOString().split('T')[0]}`,
+        `plugin: ${this.plugins[this.currentPlugin].name}`,
+        `total_commands: ${this.commands.length}`,
+        'commands:',
+        ...this.commands.map((cmd, i) => `  command_${i + 1}: "${cmd}"`)
+      ].join('\n');
+
+      this.downloadFile(content, `${this.currentPlugin}-commands.yml`, 'text/yaml');
+    }
+
+    private downloadFile(content: string, filename: string, type: string): void {
+      const blob = new Blob([content], { type: type });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      this.showToast(`Downloaded ${filename}`, 'success');
+    }
+
+    private showToast(message: string, type: 'success' | 'error' | 'info' = 'info'): void {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = `toast-${type} px-4 py-3 rounded-lg border text-white text-sm font-medium shadow-lg transform transition-all duration-300 translate-x-full`;
+      
+      const colors = {
+        success: 'bg-white/20 border-white/30',
+        error: 'bg-red-600/20 border-red-500/30',
+        info: 'bg-white/20 border-white/30'
+      };
+      
+      toast.className += ` ${colors[type]}`;
+      toast.textContent = message;
+      
+      container.appendChild(toast);
+      
+      // Animate in
+      setTimeout(() => {
+        toast.classList.remove('translate-x-full');
+      }, 10);
+      
+      // Remove after 3 seconds
+      setTimeout(() => {
+        toast.classList.add('translate-x-full');
+        setTimeout(() => {
+          if (container.contains(toast)) {
+            container.removeChild(toast);
+          }
+        }, 300);
+      }, 3000);
+    }
+  }
+
+  // Initialize
+  document.addEventListener('DOMContentLoaded', () => {
+    (window as any).commandBuilder = new CommandBuilder();
+  });
+</script>
+
+<style>
+  .plugin-card {
+    @apply p-4 bg-obsidian-700/50 border border-zinc-800 rounded-xl text-center transition-all duration-200 hover:bg-obsidian-600/50 hover:border-zinc-700;
+  }
+
+  .plugin-card.active {
+    @apply bg-white/10 border-white/20 transform scale-105;
+  }
+
+  .template-btn:hover {
+    transform: translateX(4px);
+  }
+
+  /* Modal animations */
+  .fixed {
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  .fixed > div {
+    animation: slideIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideIn {
+    from { transform: translateY(-20px) scale(0.95); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+  }
+</style>
