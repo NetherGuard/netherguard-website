@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Config Manager - NetherGuard">
+<BaseLayout title="Config Manager - NetherGuard" description="Build optimized plugin configurations with security presets and performance tuning best practices.">
   <!-- Hero Section -->
   <section class="section-spacing bg-gradient-to-br from-obsidian-900 via-zinc-900/20 to-obsidian-900">
     <div class="container">
@@ -12,138 +12,210 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           Config <span class="text-white">Manager</span>
         </h1>
         <p class="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-          Build optimized plugin configurations with security presets and performance 
-          tuning best practices included by default.
+          Build optimized plugin configurations with security presets and performance tuning.
+          Best practices included by default.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Config Builder Section -->
+  <!-- Generator Section -->
   <section class="section-spacing bg-obsidian-800">
     <div class="container">
       <div class="max-w-4xl mx-auto space-y-12">
         
         <!-- Plugin Selection -->
         <div>
-          <h2 class="text-2xl font-bold text-white mb-6">Choose Plugin</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            
-            <button class="plugin-card active" data-plugin="essentials">
-              <div class="w-12 h-12 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center mx-auto mb-3">
-                <span class="text-white font-mono text-lg font-bold">01</span>
-              </div>
-              <h3 class="font-bold text-white mb-1">Essentials</h3>
-              <p class="text-xs text-zinc-400">Basic plugin config</p>
-            </button>
-
-            <button class="plugin-card" data-plugin="worldguard">
-              <div class="w-12 h-12 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center mx-auto mb-3">
-                <span class="text-white font-mono text-lg font-bold">02</span>
-              </div>
-              <h3 class="font-bold text-white mb-1">WorldGuard</h3>
-              <p class="text-xs text-zinc-400">Region protection</p>
-            </button>
-
-            <button class="plugin-card" data-plugin="spigot">
-              <div class="w-12 h-12 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center mx-auto mb-3">
-                <span class="text-white font-mono text-lg font-bold">03</span>
-              </div>
-              <h3 class="font-bold text-white mb-1">Spigot</h3>
-              <p class="text-xs text-zinc-400">Server config</p>
-            </button>
-
-            <button class="plugin-card" data-plugin="bukkit">
-              <div class="w-12 h-12 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center mx-auto mb-3">
-                <span class="text-white font-mono text-lg font-bold">04</span>
-              </div>
-              <h3 class="font-bold text-white mb-1">Bukkit</h3>
-              <p class="text-xs text-zinc-400">Bukkit config</p>
-            </button>
-
+          <h2 class="text-2xl font-bold text-white mb-6">Select Plugin</h2>
+          <div class="bg-obsidian-700/50 border border-zinc-800 rounded-xl p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <button id="essentialsBtn" class="plugin-btn active px-6 py-4 bg-white text-black rounded-lg font-semibold transition-all duration-200 hover:scale-105 text-left">
+                <div class="font-bold text-lg">Essentials</div>
+                <div class="text-sm opacity-70">Core server commands and utilities</div>
+              </button>
+              <button id="worldguardBtn" class="plugin-btn px-6 py-4 bg-white/10 border border-white/20 hover:bg-white/20 text-white rounded-lg font-semibold transition-all duration-200 hover:scale-105 text-left">
+                <div class="font-bold text-lg">WorldGuard</div>
+                <div class="text-sm opacity-70">Region protection and world management</div>
+              </button>
+              <button id="spigotBtn" class="plugin-btn px-6 py-4 bg-white/10 border border-white/20 hover:bg-white/20 text-white rounded-lg font-semibold transition-all duration-200 hover:scale-105 text-left">
+                <div class="font-bold text-lg">Spigot</div>
+                <div class="text-sm opacity-70">Server optimization settings</div>
+              </button>
+              <button id="bukkitBtn" class="plugin-btn px-6 py-4 bg-white/10 border border-white/20 hover:bg-white/20 text-white rounded-lg font-semibold transition-all duration-200 hover:scale-105 text-left">
+                <div class="font-bold text-lg">Bukkit</div>
+                <div class="text-sm opacity-70">Core server configuration</div>
+              </button>
+            </div>
           </div>
         </div>
 
-        <!-- Configuration Presets -->
-        <div class="bg-obsidian-700/50 border border-zinc-800 rounded-xl p-6">
-          <h3 class="text-xl font-bold text-white mb-4">Configuration Presets</h3>
-          <p class="text-sm text-zinc-400 mb-6">Select a preset optimized for your server type</p>
-          
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <button class="preset-card active" data-preset="survival">
-              <h4 class="font-bold text-white mb-2">Survival Server</h4>
-              <p class="text-xs text-zinc-400 mb-3">Optimized for survival gameplay with balanced settings</p>
-              <div class="text-xs text-zinc-500">
-                • Anti-grief protection<br>
-                • Balanced economy<br>
-                • Performance optimized
-              </div>
-            </button>
-
-            <button class="preset-card" data-preset="creative">
-              <h4 class="font-bold text-white mb-2">Creative Server</h4>
-              <p class="text-xs text-zinc-400 mb-3">Creative building with world protection</p>
-              <div class="text-xs text-zinc-500">
-                • World protection<br>
-                • Build permissions<br>
-                • Fast interactions
-              </div>
-            </button>
-
-            <button class="preset-card" data-preset="minigames">
-              <h4 class="font-bold text-white mb-2">Minigames Server</h4>
-              <p class="text-xs text-zinc-400 mb-3">High performance for multiple game modes</p>
-              <div class="text-xs text-zinc-500">
-                • High tick rate<br>
-                • Quick restarts<br>
-                • Memory optimization
-              </div>
-            </button>
+        <!-- Server Type -->
+        <div>
+          <h2 class="text-2xl font-bold text-white mb-6">Server Type</h2>
+          <div class="bg-obsidian-700/50 border border-zinc-800 rounded-xl p-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <button id="survivalBtn" class="server-btn active px-6 py-4 bg-white text-black rounded-lg font-semibold transition-all duration-200 hover:scale-105 text-center">
+                <div class="font-bold text-lg">Survival</div>
+                <div class="text-sm opacity-70">Standard survival gameplay</div>
+              </button>
+              <button id="creativeBtn" class="server-btn px-6 py-4 bg-white/10 border border-white/20 hover:bg-white/20 text-white rounded-lg font-semibold transition-all duration-200 hover:scale-105 text-center">
+                <div class="font-bold text-lg">Creative</div>
+                <div class="text-sm opacity-70">Building and creative mode</div>
+              </button>
+              <button id="minigamesBtn" class="server-btn px-6 py-4 bg-white/10 border border-white/20 hover:bg-white/20 text-white rounded-lg font-semibold transition-all duration-200 hover:scale-105 text-center">
+                <div class="font-bold text-lg">Minigames</div>
+                <div class="text-sm opacity-70">PvP and competitive gameplay</div>
+              </button>
+            </div>
           </div>
         </div>
 
         <!-- Custom Settings -->
-        <div class="bg-obsidian-700/50 border border-zinc-800 rounded-xl p-6">
-          <h3 class="text-xl font-bold text-white mb-4">Custom Settings</h3>
-          
-          <div class="space-y-6" id="customSettings">
-            <!-- Settings will be populated by JS based on selected plugin -->
-          </div>
+        <div>
+          <h2 class="text-2xl font-bold text-white mb-6">Custom Settings</h2>
+          <div class="bg-obsidian-700/50 border border-zinc-800 rounded-xl p-6 space-y-8">
+            
+            <!-- Allow Direct Hat -->
+            <div class="flex items-center justify-between">
+              <div>
+                <h4 class="text-lg font-semibold text-white">Allow Direct Hat</h4>
+                <p class="text-zinc-400 text-sm">Allow players to use /hat command directly</p>
+              </div>
+              <label class="custom-checkbox">
+                <input type="checkbox" id="allowDirectHat" checked>
+                <span class="checkmark"></span>
+              </label>
+            </div>
 
+            <!-- Teleport Cooldown -->
+            <div>
+              <label class="block text-lg font-semibold text-white mb-2">Teleport Cooldown</label>
+              <p class="text-zinc-400 text-sm mb-3">Cooldown in seconds for teleport commands</p>
+              <input 
+                type="number" 
+                value="5" 
+                min="0" 
+                max="300" 
+                class="w-full px-4 py-3 bg-obsidian-900 border border-zinc-700 rounded-lg text-white focus:border-white focus:outline-none transition-colors no-arrows"
+                id="teleportCooldown"
+              />
+            </div>
+
+            <!-- Default Gamemode -->
+            <div>
+              <label class="block text-lg font-semibold text-white mb-2">Default Gamemode</label>
+              <p class="text-zinc-400 text-sm mb-3">Default gamemode for new players</p>
+              
+              <!-- Custom Gamemode Selector -->
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <button 
+                  type="button" 
+                  class="gamemode-btn active px-4 py-3 bg-white text-black rounded-lg font-medium transition-all duration-200 hover:scale-105 text-center text-sm"
+                  data-value="survival"
+                >
+                  🏹 Survival
+                </button>
+                <button 
+                  type="button" 
+                  class="gamemode-btn px-4 py-3 bg-white/10 border border-white/20 hover:bg-white/20 text-white rounded-lg font-medium transition-all duration-200 hover:scale-105 text-center text-sm"
+                  data-value="creative"
+                >
+                  🎨 Creative
+                </button>
+                <button 
+                  type="button" 
+                  class="gamemode-btn px-4 py-3 bg-white/10 border border-white/20 hover:bg-white/20 text-white rounded-lg font-medium transition-all duration-200 hover:scale-105 text-center text-sm"
+                  data-value="adventure"
+                >
+                  🗺️ Adventure
+                </button>
+                <button 
+                  type="button" 
+                  class="gamemode-btn px-4 py-3 bg-white/10 border border-white/20 hover:bg-white/20 text-white rounded-lg font-medium transition-all duration-200 hover:scale-105 text-center text-sm"
+                  data-value="spectator"
+                >
+                  👻 Spectator
+                </button>
+              </div>
+              
+              <!-- Hidden input para mantener el valor -->
+              <input type="hidden" id="defaultGamemode" value="survival">
+            </div>
+
+            <!-- Protect Rails -->
+            <div class="flex items-center justify-between">
+              <div>
+                <h4 class="text-lg font-semibold text-white">Protect Rails</h4>
+                <p class="text-zinc-400 text-sm">Prevent rail destruction</p>
+              </div>
+              <label class="custom-checkbox">
+                <input type="checkbox" id="protectRails" checked>
+                <span class="checkmark"></span>
+              </label>
+            </div>
+
+            <!-- Max Homes -->
+            <div>
+              <label class="block text-lg font-semibold text-white mb-2">Max Homes</label>
+              <p class="text-zinc-400 text-sm mb-3">Maximum homes per player</p>
+              <input 
+                type="number" 
+                value="3" 
+                min="1" 
+                max="20" 
+                class="w-full px-4 py-3 bg-obsidian-900 border border-zinc-700 rounded-lg text-white focus:border-white focus:outline-none transition-colors no-arrows"
+                id="maxHomes"
+              />
+            </div>
+
+            <!-- Spawn on Join -->
+            <div class="flex items-center justify-between">
+              <div>
+                <h4 class="text-lg font-semibold text-white">Spawn on Join</h4>
+                <p class="text-zinc-400 text-sm">Teleport to spawn on first join</p>
+              </div>
+              <label class="custom-checkbox">
+                <input type="checkbox" id="spawnOnJoin">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Generate Button -->
+        <div class="text-center">
           <button 
-            id="generateConfigBtn"
-            class="w-full px-6 py-3 bg-white hover:bg-zinc-200 text-black rounded-lg font-semibold transition-all duration-200 hover:scale-105 mt-6"
+            id="generateBtn"
+            class="px-12 py-4 bg-white hover:bg-zinc-200 text-black rounded-xl font-bold text-lg transition-all duration-200 hover:scale-105 shadow-xl"
           >
             Generate Configuration
           </button>
         </div>
 
-        <!-- Generated Configuration -->
-        <div class="bg-obsidian-700/50 border border-zinc-800 rounded-xl p-6">
+        <!-- Output Section -->
+        <div id="outputSection" class="hidden">
           <div class="flex justify-between items-center mb-6">
-            <h3 class="text-xl font-bold text-white">Generated Configuration</h3>
+            <h2 class="text-2xl font-bold text-white">Generated Configuration</h2>
             <div class="flex gap-2">
               <button 
-                id="copyConfigBtn"
-                class="px-4 py-2 bg-white/10 border border-white/20 hover:bg-white/20 text-white rounded-lg text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled
-                title="Copy configuration"
+                id="copyBtn"
+                class="px-4 py-2 bg-white/10 border border-white/20 hover:bg-white/20 text-white rounded-lg text-sm font-medium transition-colors"
               >
-                Copy Config
+                Copy to Clipboard
               </button>
               <button 
-                id="downloadConfigBtn"
-                class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled
+                id="downloadBtn"
+                class="px-4 py-2 bg-white hover:bg-zinc-200 text-black rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105"
               >
-                Download
+                Download YAML
               </button>
             </div>
           </div>
 
-          <div id="configOutput" class="bg-obsidian-900 border border-zinc-700 rounded-lg p-4 font-mono text-sm text-zinc-300 min-h-[200px] max-h-[500px] overflow-y-auto">
-            <div class="text-zinc-500 text-center py-8">
-              Configure settings above to generate your config file
+          <div class="bg-obsidian-700/50 border border-zinc-800 rounded-xl p-6">
+            <div class="bg-obsidian-900 border border-zinc-700 rounded-lg p-6 font-mono text-sm max-h-[500px] overflow-y-auto">
+              <pre id="configOutput" class="text-white whitespace-pre-wrap"></pre>
             </div>
           </div>
         </div>
@@ -152,10 +224,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- Toast Notifications -->
+  <!-- Toast Container -->
   <div id="toastContainer" class="fixed top-4 right-4 z-50 space-y-2"></div>
 
-  <!-- How it Works -->
+  <!-- Features Section -->
   <section class="section-spacing bg-obsidian-900">
     <div class="container">
       <div class="max-w-4xl mx-auto">
@@ -164,26 +236,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="text-center">
             <div class="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-              <div class="i-lucide-shield text-2xl text-white"></div>
+              <span class="text-2xl font-bold text-white">⚡</span>
             </div>
-            <h3 class="text-xl font-bold text-white mb-2">Security First</h3>
-            <p class="text-zinc-400">Built-in security best practices and anti-exploit measures included by default.</p>
+            <h3 class="text-xl font-bold text-white mb-2">Optimized</h3>
+            <p class="text-zinc-400">Performance-tuned settings for maximum server TPS and minimal lag.</p>
           </div>
           
           <div class="text-center">
             <div class="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-              <div class="i-lucide-zap text-2xl text-white"></div>
+              <span class="text-2xl font-bold text-white">🛡️</span>
             </div>
-            <h3 class="text-xl font-bold text-white mb-2">Performance</h3>
-            <p class="text-zinc-400">Optimized settings for better TPS and reduced lag on your server.</p>
+            <h3 class="text-xl font-bold text-white mb-2">Secure</h3>
+            <p class="text-zinc-400">Built-in security measures to protect against common exploits and grief.</p>
           </div>
           
           <div class="text-center">
             <div class="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-              <div class="i-lucide-settings text-2xl text-white"></div>
+              <span class="text-2xl font-bold text-white">🎯</span>
             </div>
-            <h3 class="text-xl font-bold text-white mb-2">Customizable</h3>
-            <p class="text-zinc-400">Fine-tune every setting or use presets for quick deployment.</p>
+            <h3 class="text-xl font-bold text-white mb-2">Targeted</h3>
+            <p class="text-zinc-400">Customized for your server type with game mode specific optimizations.</p>
           </div>
         </div>
       </div>
@@ -191,440 +263,473 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 </BaseLayout>
 
-<script>
-  interface ConfigSetting {
-    key: string;
-    label: string;
-    type: 'boolean' | 'number' | 'string' | 'select';
-    default: any;
-    description: string;
-    options?: string[];
+<script is:inline>
+  // Variables globales
+  var currentPlugin = 'essentials';
+  var currentServerType = 'survival';
+  var selectedGamemode = 'survival';
+  var isGenerating = false;
+
+  // Templates de configuración
+  var configTemplates = {
+    essentials: {
+      survival: `# Essentials Configuration - Survival Mode
+# Generated by NetherGuard Config Manager
+
+# Teleport settings
+teleport-cooldown: {teleportCooldown}
+teleport-delay: 3
+teleport-invulnerability: 4
+
+# Economy settings
+economy-log: true
+baltop-refresh-delay: 300
+
+# Player settings
+allow-direct-hat: {allowDirectHat}
+default-gamemode: {defaultGamemode}
+spawn-on-join: {spawnOnJoin}
+
+# Protection settings
+protect:
+  rails: {protectRails}
+  signs: true
+  sign-use: true
+
+# Home settings
+max-homes: {maxHomes}
+home-radius: 10
+
+# Performance settings
+update-check: true
+debug: false
+
+# Chat settings
+chat:
+  format: '<{DISPLAYNAME}> {MESSAGE}'
+  group-formats: {}
+
+# Command settings
+disabled-commands:
+  - nick
+  - speed
+
+# Social features
+social-spy-commands:
+  - msg
+  - mail
+  - r
+  - tell`,
+      
+      creative: `# Essentials Configuration - Creative Mode
+# Generated by NetherGuard Config Manager
+
+# Teleport settings (relaxed for creative)
+teleport-cooldown: {teleportCooldown}
+teleport-delay: 0
+teleport-invulnerability: 0
+
+# Economy settings (disabled for creative)
+economy-log: false
+baltop-refresh-delay: 600
+
+# Player settings
+allow-direct-hat: {allowDirectHat}
+default-gamemode: {defaultGamemode}
+spawn-on-join: {spawnOnJoin}
+
+# Protection settings (minimal for creative)
+protect:
+  rails: {protectRails}
+  signs: false
+  sign-use: false
+
+# Home settings (unlimited for creative)
+max-homes: {maxHomes}
+home-radius: 0
+
+# Performance settings
+update-check: true
+debug: false
+
+# Creative specific
+give-on-join:
+  - 137:1 # Command blocks for builders
+
+# Command settings (enable more commands)
+disabled-commands: []`,
+
+      minigames: `# Essentials Configuration - Minigames Mode
+# Generated by NetherGuard Config Manager
+
+# Teleport settings (instant for competitive)
+teleport-cooldown: {teleportCooldown}
+teleport-delay: 0
+teleport-invulnerability: 0
+
+# Economy settings
+economy-log: true
+baltop-refresh-delay: 60
+
+# Player settings
+allow-direct-hat: {allowDirectHat}
+default-gamemode: {defaultGamemode}
+spawn-on-join: {spawnOnJoin}
+
+# Protection settings (high for PvP)
+protect:
+  rails: {protectRails}
+  signs: true
+  sign-use: true
+  prevent-item-drop: true
+
+# Home settings (restricted for minigames)
+max-homes: {maxHomes}
+home-radius: 50
+
+# PvP settings
+player-command-teleports: false
+teleport-safety: false
+
+# Command settings
+disabled-commands:
+  - home
+  - back
+  - tp`
+    },
+    
+    worldguard: {
+      survival: `# WorldGuard Configuration - Survival Mode
+# Generated by NetherGuard Config Manager
+
+# Region settings
+regions:
+  enable: true
+  wand: minecraft:stick
+  max-region-count-per-player:
+    default: 7
+
+# Protection settings
+protection:
+  item-drop-blacklist: []
+  interaction-whitelist: []
+  emit-block-use-at-feet: []
+  
+# Game rules
+gameplay:
+  block-potions: []
+  block-potions-overly-reliably: true
+  disable-health-regain: false
+
+# Spawn settings  
+spawn-protection:
+  size: 16
+  disable-build-protection: false
+
+# Auto settings
+auto-invincible: false
+auto-invincible-group: false
+auto-no-drowning: false
+auto-no-drowning-group: false
+
+# Physics
+simulation:
+  sponge:
+    enable: true
+    redstone: false`,
+    
+      creative: `# WorldGuard Configuration - Creative Mode  
+# Generated by NetherGuard Config Manager
+
+# Region settings (relaxed for creative)
+regions:
+  enable: true
+  wand: minecraft:stick
+  max-region-count-per-player:
+    default: 20
+
+# Protection settings (minimal)
+protection:
+  item-drop-blacklist: []
+  interaction-whitelist: []
+  
+# Game rules (creative friendly)
+gameplay:
+  block-potions: []
+  disable-health-regain: true
+  disable-fall-damage: true
+
+# No spawn protection for creative
+spawn-protection:
+  size: 0
+  disable-build-protection: true`,
+
+      minigames: `# WorldGuard Configuration - Minigames Mode
+# Generated by NetherGuard Config Manager
+
+# Region settings (strict for competitive)
+regions:
+  enable: true  
+  wand: minecraft:stick
+  max-region-count-per-player:
+    default: 3
+
+# Protection settings (high security)
+protection:
+  item-drop-blacklist: ['minecraft:diamond', 'minecraft:netherite_ingot']
+  interaction-whitelist: []
+  
+# Game rules (competitive)
+gameplay:
+  block-potions: ['minecraft:invisibility_potion']
+  disable-health-regain: false
+  disable-fall-damage: false
+
+# Arena protection
+spawn-protection:
+  size: 32
+  disable-build-protection: false
+
+# PvP optimized
+pvp:
+  disable-obsidian-generators: true`
+    }
+  };
+
+  // Funciones de utilidad
+  function showToast(message, type) {
+    var container = document.getElementById('toastContainer');
+    var toast = document.createElement('div');
+    
+    var bgClass = type === 'success' ? 'bg-green-600/20 border-green-500/30' : 
+                  type === 'error' ? 'bg-red-600/20 border-red-500/30' : 
+                  'bg-white/20 border-white/30';
+    
+    toast.className = 'px-4 py-3 rounded-lg border text-white text-sm font-medium shadow-lg transform transition-all duration-300 translate-x-full ' + bgClass;
+    toast.textContent = message;
+    
+    container.appendChild(toast);
+    
+    setTimeout(function() { toast.classList.remove('translate-x-full'); }, 10);
+    setTimeout(function() {
+      toast.classList.add('translate-x-full');
+      setTimeout(function() { 
+        if (container.contains(toast)) container.removeChild(toast); 
+      }, 300);
+    }, 3000);
   }
 
-  interface PluginConfig {
-    name: string;
-    filename: string;
-    settings: ConfigSetting[];
+  // Funciones de selección
+  function selectPlugin(plugin) {
+    currentPlugin = plugin;
+    
+    // Actualizar botones
+    var buttons = document.querySelectorAll('.plugin-btn');
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].className = buttons[i].className.replace(' active', '').replace('bg-white text-black', 'bg-white/10 border border-white/20 hover:bg-white/20 text-white');
+    }
+    
+    document.getElementById(plugin + 'Btn').className = document.getElementById(plugin + 'Btn').className.replace('bg-white/10 border border-white/20 hover:bg-white/20 text-white', 'bg-white text-black') + ' active';
   }
 
-  class ConfigManager {
-    private currentPlugin: string = 'essentials';
-    private currentPreset: string = 'survival';
-    private configs: Record<string, PluginConfig> = {
-      essentials: {
-        name: 'Essentials',
-        filename: 'config.yml',
-        settings: [
-          { key: 'allow-direct-hat', label: 'Allow Direct Hat', type: 'boolean', default: true, description: 'Allow players to use /hat command directly' },
-          { key: 'teleport-cooldown', label: 'Teleport Cooldown', type: 'number', default: 5, description: 'Cooldown in seconds for teleport commands' },
-          { key: 'default-gamemode', label: 'Default Gamemode', type: 'select', default: 'survival', description: 'Default gamemode for new players', options: ['survival', 'creative', 'adventure', 'spectator'] },
-          { key: 'protect-rails', label: 'Protect Rails', type: 'boolean', default: true, description: 'Prevent rail destruction' },
-          { key: 'max-homes', label: 'Max Homes', type: 'number', default: 3, description: 'Maximum homes per player' },
-          { key: 'spawn-on-join', label: 'Spawn on Join', type: 'boolean', default: false, description: 'Teleport to spawn on first join' }
-        ]
-      },
-      worldguard: {
-        name: 'WorldGuard',
-        filename: 'config.yml',
-        settings: [
-          { key: 'use-regions', label: 'Use Regions', type: 'boolean', default: true, description: 'Enable region protection system' },
-          { key: 'mob-damage', label: 'Mob Damage', type: 'boolean', default: true, description: 'Allow mob damage in protected regions' },
-          { key: 'pvp', label: 'PvP Enabled', type: 'boolean', default: false, description: 'Allow PvP in protected regions' },
-          { key: 'fire-spread', label: 'Fire Spread', type: 'boolean', default: false, description: 'Allow fire to spread' },
-          { key: 'lava-fire', label: 'Lava Fire', type: 'boolean', default: false, description: 'Allow lava to create fire' },
-          { key: 'lightning-fire', label: 'Lightning Fire', type: 'boolean', default: false, description: 'Allow lightning to create fire' }
-        ]
-      },
-      spigot: {
-        name: 'Spigot',
-        filename: 'spigot.yml',
-        settings: [
-          { key: 'view-distance', label: 'View Distance', type: 'number', default: 10, description: 'Default view distance (lower = better performance)' },
-          { key: 'mob-spawn-range', label: 'Mob Spawn Range', type: 'number', default: 8, description: 'Mob spawning range in chunks' },
-          { key: 'entity-activation-range.animals', label: 'Animal Activation Range', type: 'number', default: 32, description: 'Range for animal AI activation' },
-          { key: 'entity-activation-range.monsters', label: 'Monster Activation Range', type: 'number', default: 32, description: 'Range for monster AI activation' },
-          { key: 'merge-radius.exp', label: 'XP Merge Radius', type: 'number', default: 3, description: 'Radius for merging XP orbs' },
-          { key: 'save-user-cache-on-stop-only', label: 'Save User Cache on Stop', type: 'boolean', default: false, description: 'Only save user cache on server stop' }
-        ]
-      },
-      bukkit: {
-        name: 'Bukkit',
-        filename: 'bukkit.yml',
-        settings: [
-          { key: 'spawn-limits.monsters', label: 'Monster Spawn Limit', type: 'number', default: 70, description: 'Maximum monsters per world' },
-          { key: 'spawn-limits.animals', label: 'Animal Spawn Limit', type: 'number', default: 10, description: 'Maximum animals per world' },
-          { key: 'chunk-gc.period-in-ticks', label: 'Chunk GC Period', type: 'number', default: 600, description: 'Garbage collection period in ticks' },
-          { key: 'ticks-per.animal-spawns', label: 'Animal Spawn Ticks', type: 'number', default: 400, description: 'Ticks between animal spawns' },
-          { key: 'ticks-per.monster-spawns', label: 'Monster Spawn Ticks', type: 'number', default: 1, description: 'Ticks between monster spawns' },
-          { key: 'allow-end', label: 'Allow End', type: 'boolean', default: true, description: 'Enable the End dimension' }
-        ]
-      }
-    };
-
-    private customSettings!: HTMLElement;
-    private generateConfigBtn!: HTMLButtonElement;
-    private copyConfigBtn!: HTMLButtonElement;
-    private downloadConfigBtn!: HTMLButtonElement;
-    private configOutput!: HTMLElement;
-
-    constructor() {
-      this.init();
+  function selectServerType(serverType) {
+    currentServerType = serverType;
+    
+    // Actualizar botones
+    var buttons = document.querySelectorAll('.server-btn');
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].className = buttons[i].className.replace(' active', '').replace('bg-white text-black', 'bg-white/10 border border-white/20 hover:bg-white/20 text-white');
     }
+    
+    document.getElementById(serverType + 'Btn').className = document.getElementById(serverType + 'Btn').className.replace('bg-white/10 border border-white/20 hover:bg-white/20 text-white', 'bg-white text-black') + ' active';
+  }
 
-    private init(): void {
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => this.initElements());
-      } else {
-        this.initElements();
-      }
+  function selectGamemode(gamemode) {
+    selectedGamemode = gamemode;
+    
+    // Actualizar botones
+    var buttons = document.querySelectorAll('.gamemode-btn');
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].className = buttons[i].className
+        .replace(' active', '')
+        .replace('bg-white text-black', 'bg-white/10 border border-white/20 hover:bg-white/20 text-white');
     }
-
-    private initElements(): void {
-      // Get elements
-      this.customSettings = document.getElementById('customSettings') as HTMLElement;
-      this.generateConfigBtn = document.getElementById('generateConfigBtn') as HTMLButtonElement;
-      this.copyConfigBtn = document.getElementById('copyConfigBtn') as HTMLButtonElement;
-      this.downloadConfigBtn = document.getElementById('downloadConfigBtn') as HTMLButtonElement;
-      this.configOutput = document.getElementById('configOutput') as HTMLElement;
-
-      // Plugin selection
-      document.querySelectorAll('.plugin-card').forEach(card => {
-        card.addEventListener('click', () => {
-          const plugin = (card as HTMLElement).dataset.plugin!;
-          this.selectPlugin(plugin);
-        });
-      });
-
-      // Preset selection - ARREGLADO
-      document.querySelectorAll('.preset-card').forEach(card => {
-        card.addEventListener('click', (e) => {
-          e.preventDefault();
-          const preset = (card as HTMLElement).dataset.preset!;
-          console.log('Preset clicked:', preset); // Debug
-          this.selectPreset(preset);
-        });
-      });
-
-      // Buttons
-      this.generateConfigBtn?.addEventListener('click', () => this.generateConfig());
-      this.copyConfigBtn?.addEventListener('click', () => this.copyConfig());
-      this.downloadConfigBtn?.addEventListener('click', () => this.downloadConfig());
-
-      // Initialize
-      this.loadSettings();
+    
+    // Activar botón seleccionado
+    var activeBtn = document.querySelector('.gamemode-btn[data-value="' + gamemode + '"]');
+    if (activeBtn) {
+      activeBtn.className = activeBtn.className
+        .replace('bg-white/10 border border-white/20 hover:bg-white/20 text-white', 'bg-white text-black') + ' active';
     }
+    
+    // Actualizar hidden input
+    document.getElementById('defaultGamemode').value = gamemode;
+  }
 
-    private selectPlugin(plugin: string): void {
-      this.currentPlugin = plugin;
-      console.log('Selected plugin:', plugin); // Debug
-      
-      // Update UI
-      document.querySelectorAll('.plugin-card').forEach(card => {
-        card.classList.remove('active');
-      });
-      document.querySelector(`[data-plugin="${plugin}"]`)?.classList.add('active');
+  // Función para generar configuración
+  function generateConfig() {
+    if (isGenerating) return;
+    
+    isGenerating = true;
+    var btn = document.getElementById('generateBtn');
+    btn.disabled = true;
+    btn.textContent = 'Generating...';
 
-      this.loadSettings();
-      // Reset config output
-      this.configOutput.innerHTML = '<div class="text-zinc-500 text-center py-8">Configure settings above to generate your config file</div>';
-      if (this.copyConfigBtn) this.copyConfigBtn.disabled = true;
-      if (this.downloadConfigBtn) this.downloadConfigBtn.disabled = true;
-    }
-
-    private selectPreset(preset: string): void {
-      this.currentPreset = preset;
-      console.log('Selected preset:', preset); // Debug
-      
-      // Update UI - ARREGLADO
-      document.querySelectorAll('.preset-card').forEach(card => {
-        card.classList.remove('active');
-      });
-      document.querySelector(`[data-preset="${preset}"]`)?.classList.add('active');
-
-      // Apply preset values immediately
-      this.applyPreset();
-      
-      // Show toast notification
-      this.showToast(`Applied ${preset} preset`, 'success');
-    }
-
-    private loadSettings(): void {
-      if (!this.customSettings) return;
-
-      const config = this.configs[this.currentPlugin];
-      if (!config) return;
-
-      this.customSettings.innerHTML = config.settings.map(setting => {
-        let inputHtml = '';
-        
-        switch (setting.type) {
-          case 'boolean':
-            inputHtml = `
-              <label class="flex items-center cursor-pointer">
-                <input type="checkbox" data-key="${setting.key}" ${setting.default ? 'checked' : ''} class="sr-only">
-                <div class="toggle-switch"></div>
-              </label>
-            `;
-            break;
-          case 'number':
-            inputHtml = `
-              <input 
-                type="number" 
-                data-key="${setting.key}" 
-                value="${setting.default}"
-                class="w-full px-3 py-2 bg-obsidian-900 border border-zinc-700 rounded-lg text-white focus:border-white focus:outline-none transition-colors text-sm"
-              />
-            `;
-            break;
-          case 'select':
-            inputHtml = `
-              <select 
-                data-key="${setting.key}"
-                class="w-full px-3 py-2 bg-obsidian-900 border border-zinc-700 rounded-lg text-white focus:border-white focus:outline-none transition-colors text-sm"
-              >
-                ${setting.options?.map(option => 
-                  `<option value="${option}" ${option === setting.default ? 'selected' : ''}>${option}</option>`
-                ).join('')}
-              </select>
-            `;
-            break;
-          default:
-            inputHtml = `
-              <input 
-                type="text" 
-                data-key="${setting.key}" 
-                value="${setting.default}"
-                class="w-full px-3 py-2 bg-obsidian-900 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:border-white focus:outline-none transition-colors text-sm"
-              />
-            `;
-        }
-
-        return `
-          <div class="space-y-2">
-            <div class="flex justify-between items-center">
-              <label class="text-sm font-medium text-zinc-300">${setting.label}</label>
-              ${setting.type === 'boolean' ? inputHtml : ''}
-            </div>
-            <div class="text-xs text-zinc-400 mb-2">${setting.description}</div>
-            ${setting.type !== 'boolean' ? inputHtml : ''}
-          </div>
-        `;
-      }).join('');
-
-      // Apply current preset after loading
-      setTimeout(() => this.applyPreset(), 100);
-    }
-
-    private applyPreset(): void {
-      // Apply preset-specific values - MEJORADO
-      const presetValues: Record<string, Record<string, any>> = {
-        survival: {
-          'pvp': false,
-          'mob-damage': true,
-          'fire-spread': false,
-          'view-distance': 8,
-          'spawn-limits.monsters': 50,
-          'teleport-cooldown': 5,
-          'default-gamemode': 'survival',
-          'protect-rails': true,
-          'max-homes': 3
-        },
-        creative: {
-          'pvp': false,
-          'mob-damage': false,
-          'fire-spread': false,
-          'view-distance': 12,
-          'default-gamemode': 'creative',
-          'spawn-limits.monsters': 20,
-          'teleport-cooldown': 0,
-          'protect-rails': false,
-          'max-homes': 10
-        },
-        minigames: {
-          'pvp': true,
-          'mob-damage': true,
-          'view-distance': 6,
-          'teleport-cooldown': 0,
-          'spawn-limits.monsters': 30,
-          'default-gamemode': 'adventure',
-          'max-homes': 1,
-          'save-user-cache-on-stop-only': true
-        }
+    setTimeout(function() {
+      // Obtener valores de los inputs
+      var settings = {
+        teleportCooldown: document.getElementById('teleportCooldown').value,
+        allowDirectHat: document.getElementById('allowDirectHat').checked,
+        defaultGamemode: selectedGamemode,
+        protectRails: document.getElementById('protectRails').checked,
+        maxHomes: document.getElementById('maxHomes').value,
+        spawnOnJoin: document.getElementById('spawnOnJoin').checked
       };
 
-      const values = presetValues[this.currentPreset] || {};
+      // Obtener template
+      var template = configTemplates[currentPlugin][currentServerType];
       
-      // Update form values
-      Object.entries(values).forEach(([key, value]) => {
-        const input = document.querySelector(`[data-key="${key}"]`) as HTMLInputElement | HTMLSelectElement;
-        if (input) {
-          if (input.type === 'checkbox') {
-            (input as HTMLInputElement).checked = value;
-          } else {
-            input.value = value.toString();
-          }
-          console.log(`Applied ${key} = ${value}`); // Debug
-        }
-      });
-    }
+      // Reemplazar valores
+      var config = template
+        .replace(/{teleportCooldown}/g, settings.teleportCooldown)
+        .replace(/{allowDirectHat}/g, settings.allowDirectHat)
+        .replace(/{defaultGamemode}/g, settings.defaultGamemode)
+        .replace(/{protectRails}/g, settings.protectRails)
+        .replace(/{maxHomes}/g, settings.maxHomes)
+        .replace(/{spawnOnJoin}/g, settings.spawnOnJoin);
 
-    private generateConfig(): void {
-      const config = this.configs[this.currentPlugin];
-      if (!config) return;
-
-      const values: Record<string, any> = {};
+      // Mostrar resultado
+      document.getElementById('configOutput').textContent = config;
+      document.getElementById('outputSection').classList.remove('hidden');
       
-      // Collect all values
-      config.settings.forEach(setting => {
-        const input = document.querySelector(`[data-key="${setting.key}"]`) as HTMLInputElement;
-        if (input) {
-          if (setting.type === 'boolean') {
-            values[setting.key] = input.checked;
-          } else if (setting.type === 'number') {
-            values[setting.key] = parseInt(input.value) || setting.default;
-          } else {
-            values[setting.key] = input.value || setting.default;
-          }
-        }
-      });
-
-      // Generate YAML config
-      let configText = `# ${config.name} Configuration\n# Generated by NetherGuard - ${new Date().toISOString().split('T')[0]}\n# Preset: ${this.currentPreset}\n\n`;
+      // Scroll to output
+      document.getElementById('outputSection').scrollIntoView({ behavior: 'smooth' });
       
-      Object.entries(values).forEach(([key, value]) => {
-        if (key.includes('.')) {
-          // Handle nested keys
-          const parts = key.split('.');
-          configText += `${parts[0]}:\n  ${parts[1]}: ${this.formatYamlValue(value)}\n`;
-        } else {
-          configText += `${key}: ${this.formatYamlValue(value)}\n`;
-        }
-      });
-
-      this.configOutput.textContent = configText;
+      showToast('Configuration generated successfully!', 'success');
       
-      // Enable buttons
-      if (this.copyConfigBtn) this.copyConfigBtn.disabled = false;
-      if (this.downloadConfigBtn) this.downloadConfigBtn.disabled = false;
-
-      this.showToast('Configuration generated successfully!', 'success');
-    }
-
-    private formatYamlValue(value: any): string {
-      if (typeof value === 'string') {
-        return `"${value}"`;
-      }
-      return value.toString();
-    }
-
-    private copyConfig(): void {
-      const config = this.configOutput.textContent;
-      if (!config) return;
-
-      navigator.clipboard.writeText(config).then(() => {
-        this.showToast('Configuration copied to clipboard', 'success');
-      }).catch(() => {
-        this.showToast('Failed to copy configuration', 'error');
-      });
-    }
-
-    private downloadConfig(): void {
-      const config = this.configOutput.textContent;
-      if (!config) return;
-
-      const pluginConfig = this.configs[this.currentPlugin];
-      const filename = pluginConfig?.filename || 'config.yml';
-
-      this.downloadFile(config, filename, 'text/yaml');
-    }
-
-    private downloadFile(content: string, filename: string, type: string): void {
-      const blob = new Blob([content], { type: type });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      
-      this.showToast(`Downloaded ${filename}`, 'success');
-    }
-
-    private showToast(message: string, type: 'success' | 'error' | 'info' = 'info'): void {
-      const container = document.getElementById('toastContainer');
-      if (!container) return;
-
-      const toast = document.createElement('div');
-      toast.className = `toast-${type} px-4 py-3 rounded-lg border text-white text-sm font-medium shadow-lg transform transition-all duration-300 translate-x-full`;
-      
-      const colors = {
-        success: 'bg-white/20 border-white/30',
-        error: 'bg-red-600/20 border-red-500/30',
-        info: 'bg-white/20 border-white/30'
-      };
-      
-      toast.className += ` ${colors[type]}`;
-      toast.textContent = message;
-      
-      container.appendChild(toast);
-      
-      // Animate in
-      setTimeout(() => {
-        toast.classList.remove('translate-x-full');
-      }, 10);
-      
-      // Remove after 3 seconds
-      setTimeout(() => {
-        toast.classList.add('translate-x-full');
-        setTimeout(() => {
-          if (container.contains(toast)) {
-            container.removeChild(toast);
-          }
-        }, 300);
-      }, 3000);
-    }
+      isGenerating = false;
+      btn.disabled = false;
+      btn.textContent = 'Generate Configuration';
+    }, 1000);
   }
 
-  // Initialize - ARREGLADO
-  document.addEventListener('DOMContentLoaded', () => {
-    new ConfigManager();
-    console.log('Config Manager initialized'); // Debug
+  // Función para copiar al clipboard
+  function copyToClipboard() {
+    var config = document.getElementById('configOutput').textContent;
+    navigator.clipboard.writeText(config).then(function() {
+      showToast('Configuration copied to clipboard!', 'success');
+    }).catch(function() {
+      showToast('Failed to copy to clipboard', 'error');
+    });
+  }
+
+  // Función para descargar archivo
+  function downloadConfig() {
+    var config = document.getElementById('configOutput').textContent;
+    var filename = currentPlugin + '-' + currentServerType + '.yml';
+    
+    var blob = new Blob([config], { type: 'text/yaml' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+    
+    showToast('Configuration downloaded!', 'success');
+  }
+
+  // Event listeners
+  document.addEventListener('DOMContentLoaded', function() {
+    // Plugin buttons
+    document.getElementById('essentialsBtn').addEventListener('click', function() { selectPlugin('essentials'); });
+    document.getElementById('worldguardBtn').addEventListener('click', function() { selectPlugin('worldguard'); });
+    document.getElementById('spigotBtn').addEventListener('click', function() { selectPlugin('spigot'); });
+    document.getElementById('bukkitBtn').addEventListener('click', function() { selectPlugin('bukkit'); });
+    
+    // Server type buttons
+    document.getElementById('survivalBtn').addEventListener('click', function() { selectServerType('survival'); });
+    document.getElementById('creativeBtn').addEventListener('click', function() { selectServerType('creative'); });
+    document.getElementById('minigamesBtn').addEventListener('click', function() { selectServerType('minigames'); });
+    
+    // Gamemode buttons
+    var gamemodeButtons = document.querySelectorAll('.gamemode-btn');
+    for (var i = 0; i < gamemodeButtons.length; i++) {
+      gamemodeButtons[i].addEventListener('click', function() {
+        selectGamemode(this.getAttribute('data-value'));
+      });
+    }
+    
+    // Generate button
+    document.getElementById('generateBtn').addEventListener('click', generateConfig);
+    
+    // Output buttons
+    document.getElementById('copyBtn').addEventListener('click', copyToClipboard);
+    document.getElementById('downloadBtn').addEventListener('click', downloadConfig);
   });
 </script>
 
 <style>
-  .plugin-card {
-    @apply p-4 bg-obsidian-700/50 border border-zinc-800 rounded-xl text-center transition-all duration-200 hover:bg-obsidian-600/50 hover:border-zinc-700 cursor-pointer;
+  .section-spacing {
+    @apply py-20 md:py-32;
   }
 
-  .plugin-card.active {
-    @apply bg-white/10 border-white/20 transform scale-105;
+  .container {
+    @apply max-w-7xl mx-auto px-6;
   }
 
-  .preset-card {
-    @apply p-4 bg-obsidian-800/50 border border-zinc-800 rounded-lg text-left transition-all duration-200 hover:bg-obsidian-700/50 hover:border-zinc-700 cursor-pointer;
+  /* Checkbox personalizado */
+  .custom-checkbox {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
   }
 
-  .preset-card.active {
-    @apply bg-white/10 border-white/20;
+  .custom-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
   }
 
-  .toggle-switch {
-    @apply relative w-11 h-6 bg-zinc-600 rounded-full transition-colors duration-200;
+  .custom-checkbox .checkmark {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: 2px solid #3f3f46;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .toggle-switch::after {
-    content: '';
-    @apply absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform duration-200;
+  .custom-checkbox:hover .checkmark {
+    border-color: #71717a;
   }
 
-  input:checked + .toggle-switch {
-    @apply bg-white;
+  .custom-checkbox input[type="checkbox"]:checked + .checkmark {
+    background-color: #ffffff;
+    border-color: #ffffff;
   }
 
-  input:checked + .toggle-switch::after {
-    @apply transform translate-x-5 bg-obsidian-900;
+  .custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
+    content: "✓";
+    color: #000000;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  /* Quitar flechitas de inputs numéricos */
+  .no-arrows {
+    -moz-appearance: textfield;
+  }
+
+  .no-arrows::-webkit-outer-spin-button,
+  .no-arrows::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 </style>
